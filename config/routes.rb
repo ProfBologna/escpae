@@ -4,4 +4,11 @@ Rails.application.routes.draw do
   post '/rooms' => 'game_rooms#create'
   get '/rooms/:id' => 'rooms#show'
   post '/rooms/:id/answer' => 'rooms#answer'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 end

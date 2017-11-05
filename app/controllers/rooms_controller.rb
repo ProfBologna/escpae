@@ -3,21 +3,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     if @room.id == 1
 
-      user_prompt = params[:user_prompt].downcase
-      user_action = user_prompt.split(" ").first
-      user_item = 
-
-      case user_prompt
-      when "2426"
-      when "1627"
-      else
-        case user_action
-        when "check"
-
-      when "check door"
-      when "check"
-
-      if params[:user_prompt].downcase == "2426"
+if params[:user_prompt].downcase == "2426"
         if @room.items.find_by(name: "Cell Phone").status == false
           flash[:danger] = "Invalid entry."
           redirect_to "/rooms/#{ params[:room_id] }"
@@ -27,12 +13,12 @@ class RoomsController < ApplicationController
 
       elsif params[:user_prompt].downcase == "check door"
         if @room.items.find_by(name: "Cell Phone").status == false
-        flash[:warning] = "The door is locked, but has a keypad. A small piece of paper taped above the keypad reads 'ENTER 4 DIGIT PASSCODE'."
-        redirect_to "/rooms/#{ params[:room_id] }"
+          flash[:warning] = "The door is locked, but has a keypad. A small piece of paper taped above the keypad reads 'ENTER 4 DIGIT PASSCODE'."
+          redirect_to "/rooms/#{ params[:room_id] }"
         else @room.items.find_by(name: "Cell Phone").status == true
-        flash[:warning] = "That cellphone text had the passcode to the door. Maybe I should check the cellphone, read the text, and enter the passcode provided."
-        redirect_to "/rooms/#{ params[:room_id] }"
-      end
+          flash[:warning] = "That cellphone text had the passcode to the door. Maybe I should check the cellphone, read the text, and enter the passcode provided."
+          redirect_to "/rooms/#{ params[:room_id] }"
+        end
 
       elsif params[:user_prompt] == "1627"
         if @room.items.find_by(name: "Desk").status == false
@@ -99,12 +85,12 @@ class RoomsController < ApplicationController
         flash[:success] = "You see a statuette of a FISHERMAN and a small BOX."
         redirect_to "/rooms/#{params[:id]}"
 
-      elsif params[:user_prompt].downcase == "check coushon"
-        flash[:success] = "Someone taped a piece of paper to the bottom of this cushon.. it says '1626'. I should make a note of that.."
+      elsif params[:user_prompt].downcase == "check cushions"
+        flash[:success] = "Someone taped a piece of paper to the bottom of this cushion.. it says '1627'. I should make a note of that.."
         redirect_to "/rooms/#{params[:id]}"
 
       elsif params[:user_prompt].downcase == "check couch"
-        flash[:warning] = "It looks like someone messed with one of the COUSHONs."
+        flash[:warning] = "It looks like someone messed with one of the CUSHIONS."
         redirect_to "/rooms/#{params[:id]}"
 
       elsif params[:user_prompt].downcase == "check potted plant"
@@ -134,12 +120,16 @@ class RoomsController < ApplicationController
         flash[:suc] = "Welcome to check <escape>! There is only 1 command (aside from 'help') and that is 'check <OBJECT>'. Keep an eye out for CAPITALIZED objects in the room, and be sure to check them! For example, to check the door, the user would type 'check door'. The case (captial, lower, etc) of 'door' doesn't matter. It's only capitalized in game to show that it is checkable. Good luck!"
         redirect_to "/rooms/#{params[:id]}"
 
+
+
       else
         flash[:danger] = "Invalid entry"
         redirect_to "/rooms/#{ params[:room_id] }"
       end
-    end 
+      
+    end
   end
+
 
   def show
     @room = Room.find(params[:id])
