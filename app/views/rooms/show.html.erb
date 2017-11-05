@@ -1,0 +1,7 @@
+<h1><%= @room.description %></h1>
+
+<%= form_tag "/rooms/#{params[:id]}/answer", method: :post do %>
+    <%= text_field_tag :user_prompt %>
+    <input type="hidden" name="room_id" value="<%= params[:id] %>"></input>
+  <%= submit_tag :submit %>
+<% end %>
