@@ -12,14 +12,20 @@ class UsersController < ApplicationController
                     password_confirmation: params[:password_confirmation]
                     )
     if user.save
+      User.create_game(user.id)
       session[:user_id] = user.id
       flash[:success] = 'Successfully created account!'
-      redirect_to '/'
+      room = user.rooms.first
+      redirect_to "/rooms/#{room.id}"
     else
       p user.errors.full_messages
       flash[:warning] = 'Invalid email or password.'
       redirect_to '/signup'
     end
+  end
+
+  def edit
+    
   end
 
 end

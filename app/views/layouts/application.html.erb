@@ -9,19 +9,14 @@
   </head>
 
   <body>
-
-    <div class="container">
-    <% flash.each do |name, message| %>
-      <div class="alert alert-<%= name %> alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <%= message %>
-      <% end %>
-    </div>
     <nav class="navbar navbar-inverse">
     <ul class="nav navbar-nav">
       <li><a href="/login">Login</a></li>
       <li><a href="/logout">Logout</a></li>
       <li><a href="/signup">Sign Up</a></li>
+      <% if controller_name == "rooms" && params[:id] %>
+        <li><a href="/rooms/<%= params[:id] %>/update_status" data-method="post">Reset Game</a></li>
+      <% end %>
     </ul>
   <ul class="nav navbar-nav navbar-right">
     <li><a href="#"><%= current_user && current_user.name %></a></li>

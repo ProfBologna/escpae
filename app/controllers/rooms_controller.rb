@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   def answer
     @room = Room.find(params[:id])
-    if @room.id == 1
+    
 
 if params[:user_prompt].downcase == "2426"
         if @room.items.find_by(name: "Cell Phone").status == false
@@ -85,7 +85,7 @@ if params[:user_prompt].downcase == "2426"
         flash[:success] = "You see a statuette of a FISHERMAN and a small BOX."
         redirect_to "/rooms/#{params[:id]}"
 
-      elsif params[:user_prompt].downcase == "check cushions"
+      elsif params[:user_prompt].downcase == "check cushion"
         flash[:success] = "Someone taped a piece of paper to the bottom of this cushion.. it says '1627'. I should make a note of that.."
         redirect_to "/rooms/#{params[:id]}"
 
@@ -127,7 +127,16 @@ if params[:user_prompt].downcase == "2426"
         redirect_to "/rooms/#{ params[:room_id] }"
       end
       
+
+  end
+
+  def update_status
+    @room = Room.find(params[:id])
+    @room.items.each do |item|
+      item.update_attributes(status: false)
     end
+    redirect_to "/rooms/#{@room.id}"
+    # redirect_to "/rooms/#{params[:room_id]}"
   end
 
 
