@@ -1,8 +1,24 @@
 <h1><%= @room.description %></h1>
 
-<%= form_tag "/rooms/#{params[:id]}/answer", method: :post do %>
-    <%= text_field_tag :user_prompt %>
-    <input type="hidden" name="room_id" value="<%= params[:id] %>"></input>
-  <%= submit_tag :submit %>
-<% end %>
+<div class="row show-page-row">
+  <div class="col-md-4"><p></p></div>
+  <div class="col-md-4">
+  <%= form_tag "/rooms/#{params[:id]}/answer", method: :post do %>
+      <%= text_field_tag :user_prompt %>
+      <input type="hidden" name="room_id" value="<%= params[:id] %>"></input>
+    <%= submit_tag :submit %>
+  <% end %>
+  </div>
+  <div class="col-md-4"><p></p></div>
+</div>
 
+<div class="progress progress-striped active">
+  <div class="progress-bar  progress-bar-success" style="width: <%= @room.percentage_complete  %>%"></div>
+</div>
+
+<!-- total-to-win = 0
+
+if item.status == true
+  total-to-win += 8
+
+  bar-fullness: [total-to-win]% -->

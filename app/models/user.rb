@@ -24,15 +24,6 @@ class User < ApplicationRecord
     item = Item.new(
                     room_id: room.id,
                     user_id: current_user_id,
-                    name: "Couch",
-                    status: false
-                    )
-
-    item.save
-
-    item = Item.new(
-                    room_id: room.id,
-                    user_id: current_user_id,
                     name: "Coffee Table",
                     status: false
                     )
@@ -43,15 +34,6 @@ class User < ApplicationRecord
                     room_id: room.id,
                     user_id: current_user_id,
                     name: "Bottle of Water",
-                    status: false
-                    )
-
-    item.save
-
-    item = Item.new(
-                    room_id: room.id,
-                    user_id: current_user_id,
-                    name: "Shelf",
                     status: false
                     )
 
@@ -83,25 +65,6 @@ class User < ApplicationRecord
                     )
 
     item.save
-
-    item = Item.new(
-                    room_id: room.id,
-                    user_id: current_user_id,
-                    name: "Fishing Pole",
-                    status: false
-                    )
-
-    item.save
-
-    item = Item.new(
-                    room_id: room.id,
-                    user_id: current_user_id,
-                    name: "Cushions",
-                    status: false
-                    )
-
-    item.save
-
 
     item = Item.new(
                     room_id: room.id,
