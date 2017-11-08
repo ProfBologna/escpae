@@ -1,10 +1,15 @@
-<h1><%= @room.description %></h1>
+<div class="panel panel-primary">
+<div class="panel-heading"><h3 class="panel-title"><strong>--------------------------------------------------------Type 'help' for instructions----------------------------------------------------</strong></h3></div>
+<h3><%= @room.description %></h3>
+</div>
+
+</br>
 
 <div class="row show-page-row">
   <div class="col-md-4"><p></p></div>
   <div class="col-md-4">
   <%= form_tag "/rooms/#{params[:id]}/answer", method: :post do %>
-      <%= text_field_tag :user_prompt %>
+      <input type="text" autocomplete="off" name="user_prompt" autofocus="autofocus"></input>
       <input type="hidden" name="room_id" value="<%= params[:id] %>"></input>
     <%= submit_tag :submit %>
   <% end %>
@@ -12,13 +17,51 @@
   <div class="col-md-4"><p></p></div>
 </div>
 
-<div class="progress progress-striped active">
-  <div class="progress-bar  progress-bar-success" style="width: <%= @room.percentage_complete  %>%"></div>
+</br>
+
+<div ckass="row">
+  <div class="progress progress-striped active">
+    <div class="progress-bar  progress-bar-success" style="width: <%= @room.percentage_complete  %>%"></div>
+  </div>
 </div>
 
-<!-- total-to-win = 0
+<div class="row show-page-row">
+<div class="col-md-4"><p></p></div>
+<div class="col-md-4">
+<div class="hidden" id="hidden-content-sub">
+<% if @room.items.find_by(name: "Cell Phone").status == true %>
+Cell Phone has been unlocked.
+<% elsif @room.items.find_by(name: "Desk").status == true %>
+Aquired a Cell Phone.
+<% elsif @room.items.find_by(name: "Fisherman").status == true %>
+Aquired a Key.
+<% elsif @room.items.find_by(name: "Box").status == true %>
+Aquired a small Fishing Pole.
+<% elsif @room.items.find_by(name: "Potted Plant").status == true %>
+Potted Plant has been watered.
+<% elsif @room.items.find_by(name: "Bottle of Water").status == true %>
+Aquired Bottle of Water.
+<% else %>
+Check some objects in the room.
+<% end %>
+</div>
+</div>
+<div class="col-md-4"><p></p></div>
+<div id="main-content-sub"></div></div>
 
-if item.status == true
-  total-to-win += 8
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  let hiddenMessage = document.querySelector('#hidden-content-sub').innerHTML;
+  let mainMessage = document.querySelector('#main-content-sub');
+  let counterLimit = hiddenMessage.length;
+  let counter = 0;
+  let runner = setInterval(addLetter, 25);
 
-  bar-fullness: [total-to-win]% -->
+  function addLetter() {
+    mainMessage.innerHTML += hiddenMessage[counter];
+    counter++;
+    if (counter >= counterLimit) { clearInterval(runner); }
+  }
+});
+</script>
+

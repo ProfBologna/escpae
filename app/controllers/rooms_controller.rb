@@ -30,7 +30,7 @@ if params[:user_prompt].downcase == "2426"
           redirect_to "/rooms/#{ params[:room_id] }"
         end
 
-      elsif params[:user_prompt].downcase == "check cellphone"
+      elsif params[:user_prompt].downcase == "check cell phone"
         if @room.items.find_by(name: "Cell Phone").status == true
           flash[:warning] = "Rereading the text, you see the passcode to the door - 2426."
           redirect_to "/rooms/#{ params[:room_id] }"
@@ -55,6 +55,12 @@ if params[:user_prompt].downcase == "2426"
           redirect_to "/rooms/#{ params[:room_id] }"
         end
 
+      elsif params[:user_prompt].downcase == "check key"
+        if @room.items.find_by(name: "Fisherman").status == true
+          flash[:warning] = "A small brass key. Looks like it belongs to something quite old."
+          redirect_to "/rooms/#{ params[:room_id] }"
+        end
+
       elsif params[:user_prompt].downcase == "check fisherman"
         if @room.items.find_by(name: "Fisherman").status == true
           flash[:warning] = "The fisherman has his pole, and the comparment that contained the key is empty. Nothing more to see here."
@@ -65,6 +71,12 @@ if params[:user_prompt].downcase == "2426"
         else @room.items.find_by(name: "Box").status == true
           flash[:success] = "As soon as you place the fishing pole in his hand, a small comparment pops open - you recieved a key!"
           @room.items.find_by(name: "Fisherman").update_attributes(status: true)
+          redirect_to "/rooms/#{params[:id]}"
+        end
+
+      elsif params[:user_prompt].downcase == "check fishing pole"
+        if @room.items.find_by(name: "Box").status == true
+          flash[:warning] = "It looks like someone just took a coffee stirer and tied a string to it. Fishing pole is probably a generous description - but for the sake of this puzzle we're going to assume that's what it is."
           redirect_to "/rooms/#{params[:id]}"
         end
 
@@ -85,7 +97,7 @@ if params[:user_prompt].downcase == "2426"
         flash[:success] = "You see a statuette of a FISHERMAN and a small BOX."
         redirect_to "/rooms/#{params[:id]}"
 
-      elsif params[:user_prompt].downcase == "check cushion"
+      elsif params[:user_prompt].downcase == "check cushions"
         flash[:success] = "Someone taped a piece of paper to the bottom of this cushion.. it says '1627'. I should make a note of that.."
         redirect_to "/rooms/#{params[:id]}"
 
@@ -106,6 +118,12 @@ if params[:user_prompt].downcase == "2426"
           redirect_to "/rooms/#{params[:id]}"
         end
 
+      elsif params[:user_prompt].downcase == "check bottle of water"
+        if @room.items.find_by(name: "Bottle of Water").status == true
+          flash[:warning] = "It's Fiji. I would never pay $3 for a bottle of water but whatever."
+          redirect_to "/rooms/#{params[:id]}"
+        end
+
       elsif params[:user_prompt].downcase == "check coffee table"
         if @room.items.find_by(name: "Bottle of Water").status == true
           flash[:warning] = "You find nothing else of interest on the coffee table."
@@ -120,7 +138,17 @@ if params[:user_prompt].downcase == "2426"
         flash[:suc] = "Welcome to check <escape>! There is only 1 command (aside from 'help') and that is 'check <OBJECT>'. Keep an eye out for CAPITALIZED objects in the room, and be sure to check them! For example, to check the door, the user would type 'check door'. The case (captial, lower, etc) of 'door' doesn't matter. It's only capitalized in game to show that it is checkable. Good luck!"
         redirect_to "/rooms/#{params[:id]}"
 
+      elsif params[:user_prompt].downcase == "check self"
+        flash[:warning] = "You haven't washed your jeans in a while but everyone does that so it's fine."
+        redirect_to "/rooms/#{ params[:room_id] }"
 
+      elsif params[:user_prompt].downcase == "check keyhole"
+        flash[:warning] = "A rusty keyhole. This desk is definitely an antique."
+        redirect_to "/rooms/#{ params[:room_id] }"
+
+      elsif params[:user_prompt].downcase == "check keypad"
+        flash[:warning] = "It looks like some of the numbers are more worn in than others, but not enough to point me in the right direction."
+        redirect_to "/rooms/#{ params[:room_id] }"
 
       else
         flash[:danger] = "Invalid entry"
