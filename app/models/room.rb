@@ -22,4 +22,5 @@ class Room < ApplicationRecord
     items_complete_count = items.where(status: true).count
     (items_complete_count/items_count.to_f * 100).round(0)
   end
+  
 end

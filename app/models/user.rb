@@ -21,6 +21,26 @@ class User < ApplicationRecord
 
     item.save
 
+
+    item = Item.new(
+                    room_id: room.id,
+                    user_id: current_user_id,
+                    name: "Key",
+                    status: false
+                    )
+
+    item.save
+
+
+    item = Item.new(
+                    room_id: room.id,
+                    user_id: current_user_id,
+                    name: "Fishing Pole",
+                    status: false
+                    )
+
+    item.save
+
     item = Item.new(
                     room_id: room.id,
                     user_id: current_user_id,

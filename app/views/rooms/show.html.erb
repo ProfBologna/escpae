@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-<div class="panel-heading"><h3 class="panel-title"><strong>--------------------------------------------------------Type 'help' for instructions----------------------------------------------------</strong></h3></div>
+<div class="panel-heading"><h3 class="panel-title"><strong>--------------------------------------------------------Type 'help' if you get stuck------------------------------------------------------</strong></h3></div>
 <h3><%= @room.description %></h3>
 </div>
 
@@ -11,7 +11,7 @@
   <%= form_tag "/rooms/#{params[:id]}/answer", method: :post do %>
       <input type="text" autocomplete="off" name="user_prompt" autofocus="autofocus"></input>
       <input type="hidden" name="room_id" value="<%= params[:id] %>"></input>
-    <%= submit_tag :submit %>
+    <%= submit_tag :Check %>
   <% end %>
   </div>
   <div class="col-md-4"><p></p></div>
@@ -30,17 +30,23 @@
 <div class="col-md-4">
 <div class="hidden" id="hidden-content-sub">
 <% if @room.items.find_by(name: "Cell Phone").status == true %>
-Cell Phone has been unlocked.
+You've unlocked the cell phone.
 <% elsif @room.items.find_by(name: "Desk").status == true %>
-Aquired a Cell Phone.
+You've unlocked the desk.
+<% elsif @room.items.find_by(name: "Key").status == true %>
+You've found an old brass key.
 <% elsif @room.items.find_by(name: "Fisherman").status == true %>
-Aquired a Key.
+You've given the fisherman his fishing pole.
+<% elsif @room.items.find_by(name: "Fishing Pole").status == true %>
+You've aquired a small fishing pole.
 <% elsif @room.items.find_by(name: "Box").status == true %>
-Aquired a small Fishing Pole.
+You see a small Fishing Pole in the box.
 <% elsif @room.items.find_by(name: "Potted Plant").status == true %>
-Potted Plant has been watered.
+Watered potted plant.
 <% elsif @room.items.find_by(name: "Bottle of Water").status == true %>
-Aquired Bottle of Water.
+You've picked up the bottle of Water.
+<% elsif @room.items.find_by(name: "Coffee Table").status == true %>
+You see a bottle of water.
 <% else %>
 Check some objects in the room.
 <% end %>

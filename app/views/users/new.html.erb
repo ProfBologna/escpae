@@ -16,3 +16,31 @@
      <input type="submit" name="Sign Up">  
     </div>
   <% end %>
+
+
+  <div class="row show-page-row">
+<div class="col-md-4"><p></p></div>
+<div class="col-md-4">
+<div class="hidden" id="hidden-content-sub">
+  ... .. . ... what happened?  ... .. . ...
+</div>
+</div>
+<div class="col-md-4"><p></p></div>
+<div id="main-content-sub"></div></div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  let hiddenMessage = document.querySelector('#hidden-content-sub').innerHTML;
+  let mainMessage = document.querySelector('#main-content-sub');
+  let counterLimit = hiddenMessage.length;
+  let counter = 0;
+  let runner = setInterval(addLetter, 100);
+
+  function addLetter() {
+    mainMessage.innerHTML += hiddenMessage[counter];
+    counter++;
+    if (counter >= counterLimit) { clearInterval(runner); }
+  }
+});
+</script>

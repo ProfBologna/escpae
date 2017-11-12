@@ -19,7 +19,9 @@
       <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><%= current_user && current_user.name %></a></li>
+    <% if current_user %>
+      <li><a href="#">Current User: <%= current_user && current_user.name %></a></li>
+    <% end %>
     </ul>
   </nav>
   
