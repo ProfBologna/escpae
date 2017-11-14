@@ -18,42 +18,43 @@
 </div>
 
 </br>
-
-<div ckass="row">
-  <div class="progress progress-striped active">
-    <div class="progress-bar  progress-bar-success" style="width: <%= @room.percentage_complete  %>%"></div>
+    
+  <div ckass="row">
+    <div class="progress progress-striped active">
+      <div class="progress-bar  progress-bar-success" style="width: <%= @room.percentage_complete  %>%"></div>
+    </div>
   </div>
-</div>
 
-<div class="row show-page-row">
-<div class="col-md-4"><p></p></div>
-<div class="col-md-4">
-<div class="hidden" id="hidden-content-sub">
-<% if @room.items.find_by(name: "Cell Phone").status == true %>
-You've unlocked the cell phone.
-<% elsif @room.items.find_by(name: "Desk").status == true %>
-You've unlocked the desk.
-<% elsif @room.items.find_by(name: "Key").status == true %>
-You've found an old brass key.
-<% elsif @room.items.find_by(name: "Fisherman").status == true %>
-You've given the fisherman his fishing pole.
-<% elsif @room.items.find_by(name: "Fishing Pole").status == true %>
-You've aquired a small fishing pole.
-<% elsif @room.items.find_by(name: "Box").status == true %>
-You see a small Fishing Pole in the box.
-<% elsif @room.items.find_by(name: "Potted Plant").status == true %>
-Watered potted plant.
-<% elsif @room.items.find_by(name: "Bottle of Water").status == true %>
-You've picked up the bottle of Water.
-<% elsif @room.items.find_by(name: "Coffee Table").status == true %>
-You see a bottle of water.
-<% else %>
-Check some objects in the room.
-<% end %>
+  <div class="row show-page-row">
+  <div class="col-md-4"><p></p></div>
+  <div class="col-md-4">
+  <div class="hidden" id="hidden-content-sub">
+  <% if @room.items.find_by(name: "Cell Phone").status == true %>
+  You've unlocked the cell phone.
+  <% elsif @room.items.find_by(name: "Desk").status == true %>
+  You've unlocked the desk.
+  <% elsif @room.items.find_by(name: "Key").status == true %>
+  You've found an old brass key.
+  <% elsif @room.items.find_by(name: "Fisherman").status == true %>
+  You've given the fisherman his fishing pole.
+  <% elsif @room.items.find_by(name: "Fishing Pole").status == true %>
+  You've aquired a small fishing pole.
+  <% elsif @room.items.find_by(name: "Box").status == true %>
+  You see a small Fishing Pole in the box.
+  <% elsif @room.items.find_by(name: "Potted Plant").status == true %>
+  Watered potted plant.
+  <% elsif @room.items.find_by(name: "Bottle of Water").status == true %>
+  You've picked up the bottle of water.
+  <% elsif @room.items.find_by(name: "Coffee Table").status == true %>
+  You see a bottle of water.
+  <% else %>
+  Check some objects in the room.
+  <% end %>
+  </div>
+  </div>
+  <div class="col-md-4"><p></p></div>
+  <div id="main-content-sub"></div></div>
 </div>
-</div>
-<div class="col-md-4"><p></p></div>
-<div id="main-content-sub"></div></div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {

@@ -7,4 +7,8 @@ class GameRoomsController < ApplicationController
                             )
   end
 
+  def show
+    
+  end
+
 end

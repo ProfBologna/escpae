@@ -171,6 +171,9 @@ function main() {
   keystate = {};
   // keeps track of the keybourd input
   document.addEventListener("keydown", function(evt) {
+    if([32, 37, 38, 39, 40].indexOf(evt.keyCode) > -1) {
+        evt.preventDefault();
+    }
     keystate[evt.keyCode] = true;
   });
   document.addEventListener("keyup", function(evt) {
